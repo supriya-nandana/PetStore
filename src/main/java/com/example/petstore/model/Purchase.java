@@ -16,7 +16,6 @@ public class Purchase {
 	private int userId;
 	private int petId;
 	private Double totalPrice;
-	private int noOfQuantities;
 	private LocalDate date;
 	public int getPurchaseId() {
 		return purchaseId;
@@ -41,12 +40,6 @@ public class Purchase {
 	}
 	public void setTotalPrice(double i) {
 		this.totalPrice = i;
-	}
-	public int getNoOfQuantities() {
-		return noOfQuantities;
-	}
-	public void setNoOfQuantities(int noOfQuantities) {
-		this.noOfQuantities = noOfQuantities;
 	}
 	public LocalDate getDate() {
 		return date;

@@ -13,7 +13,6 @@ public class Pet {
 	private int petId;
 	private String petName;
 	private double petPrice;
-	private int petQuantity;
 	public int getPetId() {
 		return petId;
 	}
@@ -32,11 +31,6 @@ public class Pet {
 	public void setPetPrice(double petPrice) {
 		this.petPrice = petPrice;
 	}
-	public int getPetQuantity() {
-		return petQuantity;
-	}
-	public void setPetQuantity(int petQuantity) {
-		this.petQuantity = petQuantity;
-	}
+	
 	
 }

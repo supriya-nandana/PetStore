@@ -37,7 +37,8 @@ public class PurchaseServiceImpl implements PurchaseService{
 		Purchase purchase= new Purchase();
 		BeanUtils.copyProperties(purchaseRequestDto, purchase);
 		purchase.setDate(LocalDate.now());
-		purchase.setTotalPrice(purchaseDao.findPriceBypetid(purchaseRequestDto.getPetId())*purchaseRequestDto.getNoOfQuantities());
+		purchase.setTotalPrice(purchaseDao.findPriceBypetid(purchaseRequestDto.getPetId()));
+		//purchase.setTotalPrice(purchaseDao.findPriceBypetid(purchaseRequestDto.getPetId())*purchaseRequestDto.getNoOfQuantities());
 		Purchase orderplaced=purchaseDao.save(purchase);
 		if(orderplaced.getPurchaseId()<=0)return "could not purchase please try agin after sometime";
 		return "your purchase has successfully completed, your purchaseid:"+orderplaced.getPurchaseId();
