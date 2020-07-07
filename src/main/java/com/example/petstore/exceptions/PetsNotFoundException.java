@@ -1,10 +1,8 @@
 package com.example.petstore.exceptions;
 
-public class PetsNotFoundException extends Exception {
+public class PetsNotFoundException extends RuntimeException {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public PetsNotFoundException(String exception) {

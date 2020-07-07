@@ -16,32 +16,23 @@ import com.example.petstore.model.User;
 import com.example.petstore.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	private static Log logger = LogFactory.getLog(UserServiceImpl.class);
 	@Autowired
 	UserDao userDao;
-	
+
 	@Override
 	public UserResponseDto authenticateUser(LoginDto loginDto) {
 		logger.info("Inside user login ");
 		UserResponseDto userResponseDto = new UserResponseDto();
-        Optional<User> user = userDao.findByUserNameAndPassword(loginDto.getUserName(),
-                loginDto.getPassword());
-        if(!user.isPresent())
-		{
+		Optional<User> user = userDao.findByUserNameAndPassword(loginDto.getUserName(), loginDto.getPassword());
+		if (!user.isPresent()) {
 			throw new ResourceNotFoundException("User not found ");
 		}
-        userResponseDto.setMessage("User logged in successfully");
-        userResponseDto.setStatusCode(HttpStatus.OK.value());
-			return userResponseDto;
-	}
-        
-       /* logger.info("Invalid credentials!!!");
-        userResponseDto.setMessage("Invalid credentials!!!");
-        userResponseDto.setStatusCode(HttpStatus.UNAUTHORIZED.value());
-        return userResponseDto;
-*/
+		userResponseDto.setMessage("User logged in successfully");
+		userResponseDto.setStatusCode(HttpStatus.OK.value());
+		return userResponseDto;
 	}
 
-
+}

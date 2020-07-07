@@ -23,13 +23,6 @@ public class UserController {
 	
 	@PostMapping("/users/login")
 	public ResponseEntity<UserResponseDto> authenticateEmployee(@Valid @RequestBody LoginDto loginDto) {
-		/*UserResponseDto userresponseDto = userService.authenticateEmployee(loginDto);
-		if (userresponseDto.getMessage().equalsIgnoreCase("invalid credentials"))
-			throw new ResourceNotFoundException("Please verify your username and password", HttpStatus.NOT_FOUND);
-
-		else
-			return new ResponseEntity<UserResponseDto>(userresponseDto, HttpStatus.OK);
-*/
 		return new ResponseEntity<>(userService.authenticateUser(loginDto),HttpStatus.OK);
 	}
 }

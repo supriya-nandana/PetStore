@@ -2,18 +2,11 @@ package com.example.petstore.dtos;
 
 public class PetsResponseDto {
 
-	private Integer statusCode;
+	
 	private int petId;
 	private String petName;
 	private double petPrice;
-	private String message;
 	
-	public Integer getStatusCode() {
-		return statusCode;
-	}
-	public void setStatusCode(Integer statusCode) {
-		this.statusCode = statusCode;
-	}
 	public int getPetId() {
 		return petId;
 	}
@@ -32,12 +25,5 @@ public class PetsResponseDto {
 	public void setPetPrice(double petPrice) {
 		this.petPrice = petPrice;
 	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 	
 }

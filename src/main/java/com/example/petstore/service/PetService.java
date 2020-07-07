@@ -1,13 +1,11 @@
 package com.example.petstore.service;
 
-import java.util.List;
-
-import com.example.petstore.dtos.PetsResponseDto;
-import com.example.petstore.exceptions.PetsNotFoundException;
+import com.example.petstore.dtos.ResponseDto;
 
 public interface PetService {
 
-	List<PetsResponseDto> getPetsByPetName(String petName) throws PetsNotFoundException;
+	public ResponseDto getPetsByPetName(String petName);
 
+	//List<PetsResponseDto> getPetsByPetName(String petName) throws PetsNotFoundException, PetsOutOfStockException;
 	
 }

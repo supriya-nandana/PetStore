@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.petstore.dao.PetDao;
 import com.example.petstore.dtos.PetsResponseDto;
+import com.example.petstore.dtos.ResponseDto;
 import com.example.petstore.exceptions.PetsNotFoundException;
 import com.example.petstore.model.Pet;
 import com.example.petstore.service.PetService;
@@ -22,20 +23,23 @@ public class PetServiceImpl implements PetService {
 	PetDao petDao;
 
 	@Override
-	public List<PetsResponseDto> getPetsByPetName(String petName) throws PetsNotFoundException {
-		Optional<List<Pet>> petsOptional = petDao.getPetsByPetName(petName);
-		if (petsOptional.isPresent()) {
-
-			return petsOptional.get().stream().map(pet -> getPetDto(pet)).collect(Collectors.toList());
+	public ResponseDto getPetsByPetName(String petName) {
+		ResponseDto responselist=new ResponseDto();
+		//Pet pets=new Pet();
+		Optional<List<Pet>> petsOptional = petDao.getPetsByPetName(petName);	
+		if (!petsOptional.isPresent()) {
+	     throw new PetsNotFoundException(" no pet found with relevant name"+petName);
 		}
-		// List<ProductsResponseDto> responseList= new ArrayList<ProductsResponseDto>();
-		throw new PetsNotFoundException("There exists no pets with the given product name:" + petName);
+		List<PetsResponseDto> petresponsedto=  petsOptional.get()
+				.stream().map(pet -> getPetDto(pet)).collect(Collectors.toList());
+		responselist.setPetsResponseDto(petresponsedto);
+		responselist.setMessage("list of pets");
+		responselist.setStatusCode(HttpStatus.OK.value());
+		return responselist;
 	}
 
 	private PetsResponseDto getPetDto(Pet pet) {
 		PetsResponseDto responseDto = new PetsResponseDto();
-		responseDto.setMessage("details of the pets");
-		responseDto.setStatusCode(HttpStatus.OK.value());
 		BeanUtils.copyProperties(pet, responseDto);
 		return responseDto;
 

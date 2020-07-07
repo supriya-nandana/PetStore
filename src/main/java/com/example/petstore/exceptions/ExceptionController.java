@@ -32,6 +32,13 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
 	       errorResponse.setMessage(allErrors);
 	        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
 	    }
-	 
+	
+	 @ExceptionHandler(value = PetsNotFoundException.class)
+		public ResponseEntity<Object> exception(PetsNotFoundException exception) {
+		 ErrorResponse errorResponse = new ErrorResponse();
+			errorResponse.setMessage(" record is not found for the requested pet");
+			errorResponse.setStatusCode(HttpStatus.NOT_FOUND.value());
+			return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+		}
 
 }
